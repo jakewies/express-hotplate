@@ -1,0 +1,33 @@
+{
+  "name": "learn-express",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run build && nodemon server.js && npm run browserSync",
+    "build": "npm run build:css && npm run uglify",
+    "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css",
+    "cssnano": "postcss -u cssnano -r src/css/styles.css -o public/css/styles.min.css",
+    "build:css": "npm run autoprefixer && npm run cssnano",
+    "watch:css": "onchange 'src/css/styles.css' -- npm run build:css",
+    "uglify": "mkdir -p public/js && uglifyjs src/js/*.js -m -o public/js/app.js",
+    "imagemin": "imagemin src/images dist/images -p",
+    "browserSync": "browser-sync start -p -f 'public/css/*.css, public/js/*.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.4",
+    "cssnano": "^3.10.0",
+    "onchange": "^3.2.1",
+    "postcss-cli": "^3.0.0-beta",
+    "uglify-js": "^2.7.5"
+  }
+}
