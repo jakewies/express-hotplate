@@ -5,8 +5,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm run build && nodemon server.js && npm run browserSync",
-    "build": "npm run build:css && npm run uglify",
+    "start": "npm run build && nodemon server.js && npm run browserSync && npm run watch",
+    "build": "npm run build:css",
+    "watch": "npm run watch:css",
     "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css",
     "cssnano": "postcss -u cssnano -r src/css/styles.css -o public/css/styles.min.css",
     "build:css": "npm run autoprefixer && npm run cssnano",
