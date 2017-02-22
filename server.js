@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'pug');
 app.set('views', './views');
 

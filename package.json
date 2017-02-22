@@ -5,16 +5,19 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm run build && nodemon server.js && npm run browserSync && npm run watch",
-    "build": "npm run build:css",
+    "start": "npm-run-all -p serve browserSync watch",
+    "serve": "nodemon server.js",
+    "browserSync": "browser-sync start -p 'localhost:3000' -f 'public'",
     "watch": "npm run watch:css",
-    "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css",
-    "cssnano": "postcss -u cssnano -r src/css/styles.css -o public/css/styles.min.css",
-    "build:css": "npm run autoprefixer && npm run cssnano",
+    "build": "npm run build:css",
+    "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css -o public/css/styles.min.css",
+    "cssnano": "postcss -u cssnano -r public/css/styles.min.css",
+    "clean:css": "rimraf public/css",
+    "build:css": "npm run clean:css && npm run autoprefixer && npm run cssnano",
     "watch:css": "onchange 'src/css/styles.css' -- npm run build:css",
-    "uglify": "mkdir -p public/js && uglifyjs src/js/*.js -m -o public/js/app.js",
-    "imagemin": "imagemin src/images dist/images -p",
-    "browserSync": "browser-sync start -p -f 'public/css/*.css, public/js/*.js'"
+    "clean:js": "rimraf public/js",
+    "uglify": "npm run clean:js && uglifyjs src/js/*.js -m -o public/js/app.js",
+    "imagemin": "imagemin src/images dist/images -p"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +29,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.4",
+    "browser-sync": "^2.18.8",
     "cssnano": "^3.10.0",
+    "npm-run-all": "^4.0.1",
     "onchange": "^3.2.1",
     "postcss-cli": "^3.0.0-beta",
     "uglify-js": "^2.7.5"
