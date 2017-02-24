@@ -25,16 +25,15 @@ npm install
 ## Development
 
 ```
-npm run build
-
-npm start
+npm run dev
 ```
 
-Profit!
+Profit! All assets are served from `src` in development.
 
 ## Express
 
-`server.js` is a pretty basic Express server. There are a few routes built into the starter kit. Feel free to change them!
+`server.js` is a pretty basic Express server. There are a few routes built into the starter kit. Change them at your leisure :blush:
+
 
 ## Contributing
 

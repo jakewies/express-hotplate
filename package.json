@@ -5,26 +5,41 @@
   "description": "Express starter kit using npm-scripts as a build process",
   "main": "server.js",
   "scripts": {
-    "build": "npm run build:css && npm run build:js",
-    "start": "npm-run-all -p serve browserSync watch",
+
+
+    "dev": "npm-run-all -p serve browserSync watch",
+    "build": "npm run build:css:prod && npm run build:js",
+
+
     "serve": "nodemon server.js",
-    "browserSync": "browser-sync start -p 'localhost:3000' -f 'public' --no-notify",
-    "watch": "npm-run-all -p watch:css watch:js",
-    "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css -o public/css/styles.min.css",
-    "cssnano": "postcss -u cssnano -r public/css/styles.min.css",
+    "browserSync": "browser-sync start -p 'localhost:3000' -f 'src' --no-notify",
+    "watch": "npm-run-all -p watch:css:dev watch:js",
+
+
+    "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css -o public/css/styles.css",
+    "cssnano": "postcss -u cssnano -r public/css/styles.css",
     "css-import": "postcss -u postcss-import -r src/css/import.css -o src/css/styles.css",
-    "css-vars": "postcss -u postcss-simple-vars -r public/css/styles.min.css",
+    "css-vars": "postcss -u postcss-simple-vars -r public/css/styles.css",
     "clean:css": "rimraf public/css",
-    "build:css": "npm run clean:css && npm run css-import && npm run autoprefixer && npm run css-vars && npm run cssnano",
-    "watch:css": "onchange 'src/css/**/*.css' -e 'src/css/styles.css' -- npm run build:css",
+    "watch:css:dev": "onchange 'src/css/**/*.css' -e 'src/css/styles.css' -- npm run build:css:dev",
+    "build:css:dev": "npm run css-import",
+    "build:css:prod": "npm run clean:css && npm run css-import && npm run autoprefixer && npm run css-vars && npm run cssnano",
+
+
     "babel": "babel src/js --presets es2015 -d public/js --source-maps inline",
     "uglify": "uglifyjs public/js/app.js -o public/js/app.min.js",
     "clean:js": "rimraf public/js",
     "build:js": "npm run clean:js && npm run babel",
     "watch:js": "onchange 'src/js/*.js' -- npm run babel",
+
+
     "imagemin": "imagemin src/images dist/images -p",
+
+
     "clean:fonts": "rimraf public/fonts && mkdir public/fonts",
     "build:fonts": "npm run clean:fonts && cp -r src/fonts/* public/fonts/"
+
+
   },
   "keywords": ["express", "npm-scripts", "pug", "es6"],
   "author": "",

@@ -15,7 +15,8 @@ app.set('views', './views');
  * Middleware
  */
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/src')));
+// used to point to public/ but switch to src in development
 
 
 /*
