@@ -5,11 +5,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "npm run build:css && npm run build:js",
     "start": "npm-run-all -p serve browserSync watch",
     "serve": "nodemon server.js",
-    "browserSync": "browser-sync start -p 'localhost:3000' -f 'public'",
+    "browserSync": "browser-sync start -p 'localhost:3000' -f 'public' --no-notify",
     "watch": "npm-run-all -p watch:css watch:js",
-    "build": "npm run build:css && npm run build:js",
     "autoprefixer": "postcss -u autoprefixer -r src/css/styles.css -o public/css/styles.min.css",
     "cssnano": "postcss -u cssnano -r public/css/styles.min.css",
     "css-import": "postcss -u postcss-import -r src/css/import.css -o src/css/styles.css",
