@@ -1,8 +1,8 @@
 {
-  "name": "learn-express",
+  "name": "express-hotplate",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "Express starter kit using npm-scripts as a build process",
   "main": "server.js",
   "scripts": {
     "build": "npm run build:css && npm run build:js",
@@ -26,7 +26,7 @@
     "clean:fonts": "rimraf public/fonts && mkdir public/fonts",
     "build:fonts": "npm run clean:fonts && cp -r src/fonts/* public/fonts/"
   },
-  "keywords": [],
+  "keywords": ["express", "npm-scripts", "pug", "es6"],
   "author": "",
   "license": "ISC",
   "dependencies": {
